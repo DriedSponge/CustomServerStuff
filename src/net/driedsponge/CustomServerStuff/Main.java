@@ -16,6 +16,7 @@ public class Main extends JavaPlugin{
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(new Events(), this);
 		this.getCommand("log").setExecutor(new PlayerCommands());
+		this.getCommand("z").setExecutor(new PlayerCommands());
 		System.out.println(ANSI_CYAN+"DriedSponge's Custom Server Stuff Loaded"+ANSI_WHITE);
 		new TimerThing().main();
 	}

@@ -5,5 +5,8 @@ author: DriedSponge
 
 commands:
   Broadcast:
+    description: Tell a message to all players in the server.
   log:
     description: Gives you the link to the console log
+  z:
+    description: Tell players you want to sleep!
