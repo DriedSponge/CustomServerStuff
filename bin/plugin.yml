@@ -1,0 +1,9 @@
+main: net.driedsponge.CustomServerStuff.Main
+name: DriedSpongesPluginGorHisServer
+version: 1.1
+author: DriedSponge
+
+commands:
+  Broadcast:
+  log:
+    description: Gives you the link to the console log
