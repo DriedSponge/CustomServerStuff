@@ -1,8 +1,15 @@
 package net.driedsponge.CustomServerStuff;
 
+import net.minecraft.server.v1_16_R1.EntityPlayer;
 import org.bukkit.Bukkit;
 
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.StringUtils;
+import org.bukkit.craftbukkit.v1_16_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,9 +18,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import sun.jvm.hotspot.opto.Block;
-
 import java.util.Random;
-
 public class Events implements Listener{
 	Functions f = new Functions();
 	@EventHandler
@@ -21,11 +26,8 @@ public class Events implements Listener{
 		Player player = event.getEntity().getPlayer();
 		String PlayerName = player.getDisplayName();
 		EntityDamageEvent.DamageCause DeathCause = event.getEntity().getLastDamageCause().getCause();
-		String DeathMessage = "&b%playername% &6died.";
+		String DeathMessage = "";
 		switch (DeathCause){
-			case VOID:
-				DeathMessage = "&b%playername% &6tripped and fell into a big deep hole.";
-				break;
 			case FALL:
 				DeathMessage = "&b%playername% &6forgot how to walk.";
 				break;
@@ -56,8 +58,34 @@ public class Events implements Listener{
 			case ENTITY_EXPLOSION:
 				DeathMessage = "&b%playername% &6was exploded.";
 				break;
+			case VOID:
+				DeathMessage = "&b%playername% &6has been sent to Brazil.";
+				break;
 			case ENTITY_ATTACK:
-
+					EntityPlayer nmsPlayer = ((CraftPlayer) event.getEntity()).getHandle();
+					Entity entity = CraftEntity.getEntity((CraftServer) event.getEntity().getServer(), nmsPlayer.getKillingEntity());
+					LivingEntity livingEntity = (LivingEntity) entity;
+					switch (livingEntity.getType()){
+						case PLAYER:
+							DeathMessage ="&b%playername% &6was beat to death by &b"+player.getKiller().getDisplayName();
+							break;
+						case ZOMBIE:
+							DeathMessage ="&b%playername% &6was mauled by a &b"+livingEntity.getType().toString().toLowerCase();
+							break;
+						case WOLF:
+							DeathMessage ="&b%playername% &6was mauled by a &b"+livingEntity.getType().toString().toLowerCase();
+							break;
+						case ENDERMAN:
+							DeathMessage ="&b%playername% &6was raped by an &bEnderman";
+							break;
+						default:
+							DeathMessage ="&b%playername% &6was killed by a &b"+livingEntity.getType().toString().toLowerCase();
+							break;
+					}
+				break;
+			default:
+				DeathMessage = "&b%playername% &6died.";
+				break;
 		}
 		event.setDeathMessage(f.Color(DeathMessage.replace("%playername%", PlayerName) + " &c&lLOL"));
 	}
