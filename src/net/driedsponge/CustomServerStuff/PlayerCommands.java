@@ -1,17 +1,27 @@
 package net.driedsponge.CustomServerStuff;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import net.md_5.bungee.api.ChatColor;
+
 public class PlayerCommands implements CommandExecutor {
     Functions f = new Functions();
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (label.equalsIgnoreCase("log")) {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
-                player.sendMessage(f.Color("&6Go to &a&nhttps://driedsponge.net/mc &r&6to view the server status and console log."));
+                TextComponent message = new TextComponent(f.Color("&6Go to &a&nhttps://driedsponge.net/mc &r&6to view the server status and console log.") );
+                message.setBold(true);
+                message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,"https://driedsponge.net/mc"));
+                message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                        new ComponentBuilder("Click here to open the url").color(ChatColor.GOLD).italic(true).create()));
+                player.spigot().sendMessage(message);
                 return true;
             } else {
                 return true;
