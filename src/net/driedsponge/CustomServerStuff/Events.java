@@ -107,7 +107,7 @@ public class Events implements Listener{
 		event.setJoinMessage(f.Color("&b"+playername+" &6joined! "+DefaultMessage[randomNumber]));
 	}
 	@EventHandler
-	public void DiamondObtain(BlockBreakEvent event) {
+	public void BlockBreakEvent(BlockBreakEvent event) {
 		Player player = event.getPlayer();
 		Material material = event.getBlock().getType();
 		switch (material){
