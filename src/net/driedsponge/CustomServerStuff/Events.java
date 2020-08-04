@@ -2,12 +2,16 @@ package net.driedsponge.CustomServerStuff;
 
 import org.bukkit.Bukkit;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import sun.jvm.hotspot.opto.Block;
+
 import java.util.Random;
 
 public class Events implements Listener{
@@ -74,5 +78,18 @@ public class Events implements Listener{
 		int randomNumber=r.nextInt(DefaultMessage.length);
 		event.setJoinMessage(f.Color("&b"+playername+" &6joined! "+DefaultMessage[randomNumber]));
 	}
+	@EventHandler
+	public void DiamondObtain(BlockBreakEvent event) {
+		Player player = event.getPlayer();
+		Material material = event.getBlock().getType();
+		switch (material){
+			case DIAMOND_ORE:
+				System.out.println("[CustomServerStuff] "+player.getDisplayName()+" mined diamond ore");
+				break;
+			case DIAMOND_BLOCK:
+				System.out.println("[CustomServerStuff] "+player.getDisplayName()+" mined a diamond block");
+				break;
 
+		}
+	}
 }

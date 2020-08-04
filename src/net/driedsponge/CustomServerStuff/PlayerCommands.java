@@ -23,7 +23,7 @@ public class PlayerCommands implements CommandExecutor {
                 if(player.isSleeping()){
                     for(Player ply: Bukkit.getOnlinePlayers()){
                         if(!ply.isSleeping()){
-                            ply.sendMessage("&b"+player.getDisplayName()+"&r wants you to go to sleep.");
+                            ply.sendMessage(f.Color("&b"+player.getDisplayName()+"&r &6wants you to go to sleep."));
                         }
                     }
                     f.Title(" {\"text\":\"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\",\"bold\":true,\"color\":\"red\"}",5);
