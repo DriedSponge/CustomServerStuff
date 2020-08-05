@@ -1,10 +1,11 @@
 package net.driedsponge.CustomServerStuff;
-
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_16_R1.EntityPlayer;
-import org.bukkit.Bukkit;
-
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.StringUtils;
 import org.bukkit.craftbukkit.v1_16_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftEntity;
 import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
@@ -17,10 +18,13 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import sun.jvm.hotspot.opto.Block;
+import org.bukkit.plugin.Plugin;
 import java.util.Random;
+import me.clip.placeholderapi.PlaceholderAPI;
+
 public class Events implements Listener{
 	Functions f = new Functions();
+	Plugin plugin = Main.getPlugin(Main.class);
 	@EventHandler
 	public void PlayerDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity().getPlayer();
@@ -29,37 +33,37 @@ public class Events implements Listener{
 		String DeathMessage = "";
 		switch (DeathCause){
 			case FALL:
-				DeathMessage = "&b%playername% &6forgot how to walk.";
+				DeathMessage = "&b%player_name% &6forgot how to walk.";
 				break;
 			case FIRE:
-				DeathMessage = "&b%playername% &6was cooked to death.";
+				DeathMessage = "&b%player_name% &6was cooked to death.";
 				break;
 			case SUICIDE:
-				DeathMessage = "&6Due to the lack of out reach for people with depression, &b%playername%&6 committed suicide.";
+				DeathMessage = "&6Due to the lack of out reach for people with depression, &b%player_name%&6 committed suicide.";
 				break;
 			case DROWNING:
-				DeathMessage = "&b%playername% &6tried to become a fish and failed miserably.";
+				DeathMessage = "&b%player_name% &6tried to become a fish and failed miserably.";
 				break;
 			case LIGHTNING:
-				DeathMessage = "&b%playername% &6was struck by lightning. That's 1 in 1,222,000 chance!";
+				DeathMessage = "&b%player_name% &6was struck by lightning. That's 1 in 1,222,000 chance!";
 				break;
 			case LAVA:
-				DeathMessage = "&b%playername% &6swam in lava.";
+				DeathMessage = "&b%player_name% &6swam in lava.";
 				break;
 			case WITHER:
-				DeathMessage = "&b%playername% &6got BRUHED by the WIther.";
+				DeathMessage = "&b%player_name% &6got BRUHED by the WIther.";
 				break;
 			case STARVATION:
-				DeathMessage = "&b%playername% &6 starved to death.";
+				DeathMessage = "&b%player_name% &6 starved to death.";
 				break;
 			case BLOCK_EXPLOSION:
-				DeathMessage = "&b%playername% &6was exploded.";
+				DeathMessage = "&b%player_name% &6was exploded.";
 				break;
 			case ENTITY_EXPLOSION:
-				DeathMessage = "&b%playername% &6was exploded.";
+				DeathMessage = "&b%player_name% &6was exploded.";
 				break;
 			case VOID:
-				DeathMessage = "&b%playername% &6has been sent to Brazil.";
+				DeathMessage = "&b%player_name% &6has been sent to Brazil.";
 				break;
 			case ENTITY_ATTACK:
 					EntityPlayer nmsPlayer = ((CraftPlayer) event.getEntity()).getHandle();
@@ -67,44 +71,44 @@ public class Events implements Listener{
 					LivingEntity livingEntity = (LivingEntity) entity;
 					switch (livingEntity.getType()){
 						case PLAYER:
-							DeathMessage ="&b%playername% &6was beat to death by &b"+player.getKiller().getDisplayName();
+							DeathMessage ="&b%player_name% &6was beat to death by &b"+player.getKiller().getDisplayName();
 							break;
 						case ZOMBIE:
-							DeathMessage ="&b%playername% &6was mauled by a &b"+livingEntity.getType().toString().toLowerCase();
+							DeathMessage ="&b%player_name% &6was mauled by a &b"+livingEntity.getType().toString().toLowerCase();
 							break;
 						case WOLF:
-							DeathMessage ="&b%playername% &6was mauled by a &b"+livingEntity.getType().toString().toLowerCase();
+							DeathMessage ="&b%player_name% &6was mauled by a &b"+livingEntity.getType().toString().toLowerCase();
 							break;
 						case ENDERMAN:
-							DeathMessage ="&b%playername% &6was raped by an &bEnderman";
+							DeathMessage ="&b%player_name% &6was raped by an &bEnderman";
 							break;
 						default:
-							DeathMessage ="&b%playername% &6was killed by a &b"+livingEntity.getType().toString().toLowerCase();
+							DeathMessage ="&b%player_name% &6was killed by a &b"+livingEntity.getType().toString().toLowerCase();
 							break;
 					}
 				break;
 			default:
-				DeathMessage = "&b%playername% &6died.";
+				DeathMessage = "&b%player_name% &6died.";
 				break;
 		}
-		event.setDeathMessage(f.Color(DeathMessage.replace("%playername%", PlayerName) + " &c&lLOL"));
+		event.setDeathMessage(f.Color(PlaceholderAPI.setPlaceholders(player,DeathMessage+" &c&lLOL")));
 	}
 	@EventHandler
 	public void PlayerJoin(PlayerJoinEvent event) {
 		//here is the code that will be run once the event is triggered
 		Player player = event.getPlayer();
 		String playername = player.getDisplayName();
-		player.sendMessage(f.Color("&6Welcome back &b"+playername+"&6. &c10 &6Reddit Karma has been withdrawn from your account!"));
-		String[] DefaultMessage = {
-				"we missed you",
-				"great you're back",
-				"woo hoo",
-				"yay",
-				"&cyou will die"
-		};
+		String motd = f.Color(plugin.getConfig().getString("player-join.motd"));
+		TextComponent message = new TextComponent(PlaceholderAPI.setPlaceholders(event.getPlayer(), motd));
+		message.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,"/help"));
+		message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+				new ComponentBuilder("Click here to run /help").color(ChatColor.GRAY).italic(false).create()));
+		player.spigot().sendMessage(message);
+		String[] DefaultMessage =plugin.getConfig().getStringList("player-join.join-mesages").toArray(new String[0]);
 		Random r=new Random();
 		int randomNumber=r.nextInt(DefaultMessage.length);
-		event.setJoinMessage(f.Color("&b"+playername+" &6joined! "+DefaultMessage[randomNumber]));
+		String JoinMessage = f.Color(DefaultMessage[randomNumber]);
+		event.setJoinMessage(PlaceholderAPI.setPlaceholders(event.getPlayer(), JoinMessage));
 	}
 	@EventHandler
 	public void BlockBreakEvent(BlockBreakEvent event) {

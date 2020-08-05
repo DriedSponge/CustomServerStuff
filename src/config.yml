@@ -1,0 +1,10 @@
+reload:
+  message: "&6Plugin reloaded!"
+
+player-join:
+  motd: "&6Hey &b%player_name%&6.\nDo &a/help&6 for a list of commands\n&4[ATTENTION] &cIf you are caught using X-Ray or any other type of cheat, I will clear your inventory and obliterate your home and make you start over. Play the game fair."
+  join-mesages:
+    - "&eWelcome &b%player_name%&e! We missed you!"
+    - "&eHey what's up &b%player_name%&e."
+    - "&&b%player_name%&e is here!"
+    - "&&b%player_name%&e has entered the server!"
