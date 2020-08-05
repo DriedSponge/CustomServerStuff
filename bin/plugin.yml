@@ -12,6 +12,6 @@ commands:
   z:
     description: Tell players you want to sleep!
     permission: driedsponge.z
-  customstuff:
+  driedplugin:
     description: Plugin options
-    permission: driedsponge.customstuff
+    permission: driedsponge.driedplugin
