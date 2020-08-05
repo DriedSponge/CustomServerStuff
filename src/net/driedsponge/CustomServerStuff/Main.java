@@ -12,7 +12,7 @@ public final class Main extends JavaPlugin{
 			this.saveDefaultConfig();
 			this.getCommand("log").setExecutor(new PlayerCommands());
 			this.getCommand("z").setExecutor(new PlayerCommands());
-			this.getCommand("customstuff").setExecutor(new AdminCommands());
+			this.getCommand("driedplugin").setExecutor(new AdminCommands());
 			Bukkit.getLogger().info("[DriedPlugin] DriedSponge's Custom Server Stuff Loaded");
 			new TimerThing().main();
 		} else {

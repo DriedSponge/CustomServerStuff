@@ -12,9 +12,9 @@ public class AdminCommands implements CommandExecutor{
     Functions f = new Functions();
     Plugin plugin = Main.getPlugin(Main.class);
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (label.equalsIgnoreCase("customstuff")) {
+        if (label.equalsIgnoreCase("driedplugin")) {
             if(args.length == 0){
-                sender.sendMessage("&cUsage: /customstuff reload");
+                sender.sendMessage("&cUsage: /driedplugin <action>");
                 return true;
             }
             if(args[0].equalsIgnoreCase("reload")){

@@ -92,6 +92,7 @@ public class Events implements Listener{
 				break;
 		}
 		event.setDeathMessage(f.Color(PlaceholderAPI.setPlaceholders(player,DeathMessage+" &c&lLOL")));
+		player.sendMessage(f.Color(PlaceholderAPI.setPlaceholders(player,"&6You died. That sucks. Here is where you died: &aX:%player_x% Y:%player_y% Z:%player_z%")));
 	}
 	@EventHandler
 	public void PlayerJoin(PlayerJoinEvent event) {
@@ -104,7 +105,7 @@ public class Events implements Listener{
 		message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
 				new ComponentBuilder("Click here to run /help").color(ChatColor.GRAY).italic(false).create()));
 		player.spigot().sendMessage(message);
-		String[] DefaultMessage =plugin.getConfig().getStringList("player-join.join-mesages").toArray(new String[0]);
+		String[] DefaultMessage =plugin.getConfig().getStringList("player-join.join-messages").toArray(new String[0]);
 		Random r=new Random();
 		int randomNumber=r.nextInt(DefaultMessage.length);
 		String JoinMessage = f.Color(DefaultMessage[randomNumber]);
@@ -116,10 +117,10 @@ public class Events implements Listener{
 		Material material = event.getBlock().getType();
 		switch (material){
 			case DIAMOND_ORE:
-				System.out.println("[CustomServerStuff] "+player.getDisplayName()+" mined diamond ore");
+				System.out.println("[DriedPlugin] "+player.getDisplayName()+" mined diamond ore");
 				break;
 			case DIAMOND_BLOCK:
-				System.out.println("[CustomServerStuff] "+player.getDisplayName()+" mined a diamond block");
+				System.out.println("[DriedPlugin] "+player.getDisplayName()+" mined a diamond block");
 				break;
 
 		}
