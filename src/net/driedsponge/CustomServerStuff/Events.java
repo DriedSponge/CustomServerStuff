@@ -16,6 +16,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
@@ -98,6 +100,7 @@ public class Events implements Listener{
 	public void PlayerJoin(PlayerJoinEvent event) {
 		//here is the code that will be run once the event is triggered
 		Player player = event.getPlayer();
+		player.setPlayerListName(PlaceholderAPI.setPlaceholders(event.getPlayer(),plugin.getConfig().getString("tab-list.format")));
 		String playername = player.getDisplayName();
 		String motd = f.Color(plugin.getConfig().getString("player-join.motd"));
 		TextComponent message = new TextComponent(PlaceholderAPI.setPlaceholders(event.getPlayer(), motd));
@@ -124,5 +127,14 @@ public class Events implements Listener{
 				break;
 
 		}
+	}
+	@EventHandler
+	public void ChatEvent(AsyncPlayerChatEvent event) {
+		Player player = event.getPlayer();
+		String message = event.getMessage();
+		String format = plugin.getConfig().getString("chat.format");
+		//event.setMessage(format);
+		//event.setFormat(f.Color(PlaceholderAPI.setPlaceholders(player,format)));
+		event.setFormat(f.Color(PlaceholderAPI.setPlaceholders(player,format)));
 	}
 }
