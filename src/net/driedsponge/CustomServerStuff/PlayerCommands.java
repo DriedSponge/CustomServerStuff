@@ -1,4 +1,5 @@
 package net.driedsponge.CustomServerStuff;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -55,6 +56,15 @@ public class PlayerCommands implements CommandExecutor {
                     }
                 }
                 f.Title(" {\"text\":\"ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\",\"bold\":true,\"color\":\"red\"}",5);
+                return true;
+            } else {
+                return true;
+            }
+        }
+        if (label.equalsIgnoreCase("chatpos")) {
+            if (sender instanceof Player) {
+                Player player = (Player) sender;
+                player.chat(f.Color(PlaceholderAPI.setPlaceholders(player,"&6My coordinates are: &aX:%player_x% Y:%player_y% Z:%player_z%")));
                 return true;
             } else {
                 return true;
