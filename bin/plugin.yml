@@ -15,3 +15,6 @@ commands:
   driedplugin:
     description: Plugin options
     permission: driedsponge.driedplugin
+  chatpos:
+    description: Share your position in chat.
+    permission: driedsponge.chatpos

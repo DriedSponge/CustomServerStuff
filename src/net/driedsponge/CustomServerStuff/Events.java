@@ -40,9 +40,6 @@ public class Events implements Listener{
 			case FIRE:
 				DeathMessage = "&b%player_name% &6was cooked to death.";
 				break;
-			case SUICIDE:
-				DeathMessage = "&6Due to the lack of out reach for people with depression, &b%player_name%&6 committed suicide.";
-				break;
 			case DROWNING:
 				DeathMessage = "&b%player_name% &6tried to become a fish and failed miserably.";
 				break;
@@ -82,7 +79,7 @@ public class Events implements Listener{
 							DeathMessage ="&b%player_name% &6was mauled by a &b"+livingEntity.getType().toString().toLowerCase();
 							break;
 						case ENDERMAN:
-							DeathMessage ="&b%player_name% &6was raped by an &bEnderman";
+							DeathMessage ="&b%player_name% &6was killed by an &bEnderman";
 							break;
 						default:
 							DeathMessage ="&b%player_name% &6was killed by a &b"+livingEntity.getType().toString().toLowerCase();
