@@ -1,4 +1,4 @@
-package net.driedsponge.CustomServerStuff;
+package net.driedsponge.driedplugin;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import net.md_5.bungee.api.ChatColor;
-import net.driedsponge.CustomServerStuff.Main;
+import net.driedsponge.driedplugin.Main;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -74,3 +74,4 @@ public class PlayerCommands implements CommandExecutor {
     }
 
 }
+

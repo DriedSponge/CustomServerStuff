@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CustomServerStuff.iml" filepath="$PROJECT_DIR$/CustomServerStuff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DriedPlugin.iml" filepath="$PROJECT_DIR$/DriedPlugin.iml" />
     </modules>
   </component>
 </project>
