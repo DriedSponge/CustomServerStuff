@@ -1,4 +1,4 @@
-package net.driedsponge.CustomServerStuff;
+package net.driedsponge.driedplugin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="CustomServerStuff">
-    <output-path>A:/Servers/DevServer/plugins</output-path>
-    <root id="archive" name="CustomServerStuff.jar">
-      <element id="module-output" name="CustomServerStuff" />
-    </root>
-  </artifact>
-</component>

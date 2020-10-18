@@ -1,9 +1,9 @@
 //For anyone viewing this file, please note that this was added for sattire
-package net.driedsponge.CustomServerStuff;
-import net.minecraft.server.v1_16_R1.IChatBaseComponent;
-import net.minecraft.server.v1_16_R1.PacketPlayOutTitle;
+package net.driedsponge.driedplugin;
+import net.minecraft.server.v1_16_R2.IChatBaseComponent;
+import net.minecraft.server.v1_16_R2.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import java.util.Calendar;
 import java.util.Timer;
